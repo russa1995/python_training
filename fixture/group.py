@@ -6,7 +6,7 @@ class GroupHelper:
     def group_create(self, group):
         wd = self.app.wd
         # return to group page
-        self.open_home_page()
+        self.app.open_home_page()
         wd.find_element_by_link_text("groups").click()
         # init group creation
         wd.find_element_by_name("new").click()
@@ -28,8 +28,3 @@ class GroupHelper:
         wd = self.app.wd
         # open groups page
         wd.find_element_by_link_text("groups").click()
-
-
-    def open_home_page(self):
-        wd = self.app.wd
-        wd.get("https://localhost/addressbook/")
