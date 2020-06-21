@@ -24,7 +24,7 @@ class TestAddGroup(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.open_groups_page(wd)
-        self.group_create(wd, Group(ame="griou", header="ytu", footer="rtyw"))
+        self.group_create(wd, Group(name="griou", header="ytu", footer="rtyw"))
         self.retun_to_group_page(wd)
         self.logout(wd)
 
