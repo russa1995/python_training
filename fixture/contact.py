@@ -11,7 +11,8 @@ class ContactHelper:
 
     def return_home_page(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home page").click()
+        if not (wd.current_url.endswith("/addressbook/")):
+            wd.find_element_by_link_text("home page").click()
 
     def create_new_contact(self, contact):
         wd = self.app.wd
@@ -68,7 +69,8 @@ class ContactHelper:
 
     def click_home(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        if not (wd.current_url.endswith("/addressbook/")):
+            wd.find_element_by_link_text("home").click()
 
     def edit_first_contact(self, contact):
         wd = self.app.wd
