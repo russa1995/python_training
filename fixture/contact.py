@@ -24,6 +24,7 @@ class ContactHelper:
         self.submit()
         # return to home page
         self.return_home_page()
+        self.contact_list = None
 
     def fill_contact_form(self, contact):
         wd = self.app.wd
@@ -67,6 +68,7 @@ class ContactHelper:
         # press Delete
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
+        self.contact_list = None
 
     def click_home(self):
         wd = self.app.wd
@@ -82,6 +84,7 @@ class ContactHelper:
         self.update_changes()
         # return to home page
         self.return_home_page()
+        self.contact_list = None
 
     def update_changes(self):
         wd = self.app.wd
@@ -96,15 +99,18 @@ class ContactHelper:
         self.click_home()
         return len(wd.find_elements_by_name("selected[]"))
 
+    contact_list = None
+
     def get_contact_list(self):
-        wd = self.app.wd
-        self.app.open_home_page()
-        contacts = []
-        for element in wd.find_elements_by_name("entry"):
-            text = element.find_element_by_name("selected[]").get_attribute("title")
-            id = element.find_element_by_name("selected[]").get_attribute("value")
-            contacts.append(Contact(name=text, id=id))
-        return contacts
+        if self.contact_list is None:
+            wd = self.app.wd
+            self.app.open_home_page()
+            self.contact_list = []
+            for element in wd.find_elements_by_name("entry"):
+                text = element.find_element_by_name("selected[]").get_attribute("title")
+                id = element.find_element_by_name("selected[]").get_attribute("value")
+                self.contact_list.append(Contact(name=text, id=id))
+        return list(self.contact_list)
 
 
 
