@@ -116,8 +116,13 @@ class ContactHelper:
             self.contact_list = []
             for element in wd.find_elements_by_name("entry"):
                 text = element.find_element_by_name("selected[]").get_attribute("title")
+                table = []
+                for i in wd.find_elements_by_tag_name("td"):
+                    table.append(i)
+                lastname = table[1]
+                firstname = table[2]
                 id = element.find_element_by_name("selected[]").get_attribute("value")
-                self.contact_list.append(Contact(name=text, id=id))
+                self.contact_list.append(Contact(name=text, id=id, lastname=lastname, firstname=firstname))
         return list(self.contact_list)
 
 
