@@ -84,7 +84,7 @@ class ContactHelper:
         # click add new contact
         self.app.open_home_page()
         self.select_element_by_index(index)
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
         self.fill_contact_form(contact)
         self.update_changes()
         # return to home page
