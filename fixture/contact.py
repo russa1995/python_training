@@ -121,9 +121,9 @@ class ContactHelper:
                 lastname = cells[1].text
                 firstname = cells[2].text
                 id = cells[0].find_element_by_name("selected[]").get_attribute("value")
-                all_phones = cells[5].text.splitlines()
+                all_phones = cells[5].text
                 self.contact_list.append(Contact(id=id, lastname=lastname, firstname=firstname,
-                                                 home=all_phones[0], mobile=all_phones[1], work=all_phones[2],))
+                                                 all_phones_from_home_page = all_phones))
         return list(self.contact_list)
 
     def get_contact_info_from_edit_page(self, index):
@@ -135,7 +135,6 @@ class ContactHelper:
         home = wd.find_element_by_name("home").get_attribute("value")
         mobile = wd.find_element_by_name("mobile").get_attribute("value")
         work = wd.find_element_by_name("work").get_attribute("value")
-        fax = wd.find_element_by_name("fax").get_attribute("value")
         return Contact(firstname=firstname, lastname=lastname, id=id, home=home, mobile=mobile,
                        work=work)
 
