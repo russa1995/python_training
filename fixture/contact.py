@@ -67,6 +67,7 @@ class ContactHelper:
         # press Delete
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to.alert.accept()
+        wd.find_elements_by_css_selector("div.msgbox")
         self.contact_list = None
 
     def click_home(self):
