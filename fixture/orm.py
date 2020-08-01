@@ -21,11 +21,12 @@ class ORMFixture:
         id = PrimaryKey(int, column='id')
         firstname = Optional(str, column='firstname')
         lastname = Optional(str, column='lastname')
-        deprecated = Optional(datetime, column='deprecated')
+        deprecated = Optional(str, column='deprecated')
 
     def __init__(self, host, name, user, password):
         self.db.bind('mysql', host=host, database=name, user=user, password=password, conv=decoders)
         self.db.generate_mapping()
+        sql_debug(True)
 
     def convert_groups_to_model(self, groups):
         def convert(group):
@@ -35,4 +36,13 @@ class ORMFixture:
     @db_session
     def get_group_list(self):
         return self.convert_groups_to_model(select(g for g in ORMFixture.ORMGroup))
+
+    def convert_contacts_to_model(self, contacts):
+        def convert(contact):
+            return Contact(id=str(contact.id), firstname=contact.firstname, lastname=contact.lastname)
+        return list(map(convert, contacts))
+
+    @db_session
+    def get_contact_list(self):
+        return self.convert_contacts_to_model(select(c for c in ORMFixture.ORMContact if c.deprecated is None))
 
