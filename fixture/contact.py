@@ -71,6 +71,14 @@ class ContactHelper:
         wd.find_elements_by_css_selector("div.msgbox")
         self.contact_list = None
 
+    def delete_contact_by_id(self, id):
+        wd = self.app.wd
+        self.select_element_by_id(id)
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to.alert.accept()
+        wd.find_elements_by_css_selector("div.msgbox")
+        self.contact_list = None
+
     def click_home(self):
         wd = self.app.wd
         if not (wd.current_url.endswith("/addressbook/")):
@@ -92,9 +100,25 @@ class ContactHelper:
         self.return_home_page()
         self.contact_list = None
 
+    def edit_contact_by_id(self, id,  contact):
+        wd = self.app.wd
+        # click add new contact
+        self.app.open_home_page()
+        self.select_element_by_id(id)
+        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        self.fill_contact_form(contact)
+        self.update_changes()
+        # return to home page
+        self.return_home_page()
+        self.contact_list = None
+
     def select_element_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
+
+    def select_element_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
 
     def update_changes(self):
         wd = self.app.wd
