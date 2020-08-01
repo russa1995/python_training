@@ -27,6 +27,5 @@ class ORMFixture:
 
     @db_session
     def get_group_list(self):
-        with db_session:
-            return select(g for g in ORMFixture.ORMGroup)
+        return list(select(g for g in ORMFixture.ORMGroup))
 
