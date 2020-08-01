@@ -1,6 +1,5 @@
 from selenium.webdriver.support.select import Select
 from model.contact import Contact
-import re
 
 class ContactHelper:
 
@@ -195,5 +194,23 @@ class ContactHelper:
         row = wd.find_elements_by_name("entry")[index]
         cell = row.find_elements_by_tag_name("td")[6]
         cell.find_element_by_tag_name("a").click()
+
+    def add_contact_to_group(self, group_id, id):
+        wd = self.app.wd
+        self.select_element_by_id(id)
+        wd.find_element_by_name("to_group").click()
+        Select(wd.find_element_by_name("to_group")).select_by_value(group_id)
+        wd.find_element_by_name("add").click()
+        wd.find_element_by_link_text("home").click()
+
+    def delete_contact_from_group(self, value, id):
+        wd = self.app.wd
+        wd.find_element_by_name("group").click()
+        Select(wd.find_element_by_name("group")).select_by_value(value)
+        self.select_element_by_id(id)
+        wd.find_element_by_name("remove").click()
+        wd.find_element_by_link_text("home").click()
+        wd.find_element_by_name("group").click()
+        Select(wd.find_element_by_name("group")).select_by_value("")
 
 
