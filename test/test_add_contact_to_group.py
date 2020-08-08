@@ -10,7 +10,17 @@ def test_add_contact_to_group(app, orm):
         app.group.group_create(Group(name="test"))
     if app.contact.count() == 0:
         app.contact.create_new_contact(Contact(firstname="test"))
-    contact = random.choice(db.get_contact_list())
-    group = random.choice(db.get_group_list())
-    app.contact.add_contact_to_group(group.id, contact.id)
-    assert Contact(id=contact.id) in db.get_contacts_in_group(Group(id=group.id))
+    group = random.choice(orm.get_group_list())
+    contacts = db.get_contact_list()
+    contacts_without_groups = []
+    for contact in contacts:
+        if Contact(id=contact.id) in db.get_contacts_not_in_group(Group(id=group.id)):
+            contacts_without_groups.append(contact)
+    if len(contacts_without_groups) == 0:
+        app.contact.contact(Contact(firstname="test"))
+        contacts = db.get_contact_list()
+        for contact in contacts:
+            if Contact(id=contact.id) in db.get_contacts_not_in_group(Group(id=group.id)):
+                contacts_without_groups.append(contact)
+    app.contact.add_contact_to_group(group.id, contacts_without_groups[0].id)
+    assert Contact(id=contacts_without_groups[0].id) in db.get_contacts_in_group(Group(id=group.id))
