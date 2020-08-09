@@ -1,0 +1,43 @@
+Started by user admin
+Running as SYSTEM
+Building in workspace C:\Users\STAS\.jenkins\workspace\addressbook tests
+No credentials specified
+ > C:\Program Files\Git\cmd\git.exe rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > C:\Program Files\Git\cmd\git.exe config remote.origin.url https://github.com/russa1995/python_training # timeout=10
+Fetching upstream changes from https://github.com/russa1995/python_training
+ > C:\Program Files\Git\cmd\git.exe --version # timeout=10
+ > git --version # 'git version 2.27.0.windows.1'
+ > C:\Program Files\Git\cmd\git.exe fetch --tags --force --progress -- https://github.com/russa1995/python_training +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > C:\Program Files\Git\cmd\git.exe rev-parse "refs/remotes/origin/master^{commit}" # timeout=10
+ > C:\Program Files\Git\cmd\git.exe rev-parse "refs/remotes/origin/origin/master^{commit}" # timeout=10
+Checking out Revision 53a9ace539aaad05fe9b92e0afcc6cf2cd434af5 (refs/remotes/origin/master)
+ > C:\Program Files\Git\cmd\git.exe config core.sparsecheckout # timeout=10
+ > C:\Program Files\Git\cmd\git.exe checkout -f 53a9ace539aaad05fe9b92e0afcc6cf2cd434af5 # timeout=10
+Commit message: "#jsonpickle"
+ > C:\Program Files\Git\cmd\git.exe rev-list --no-walk 53a9ace539aaad05fe9b92e0afcc6cf2cd434af5 # timeout=10
+[addressbook tests] $ cmd.exe /c call C:\Users\STAS\AppData\Local\Temp\shiningpanda753264758350740439.bat
+
+C:\Users\STAS\.jenkins\workspace\addressbook tests>pip install pytest
+
+C:\Users\STAS\.jenkins\workspace\addressbook tests>pip install selenium
+
+C:\Users\STAS\.jenkins\workspace\addressbook tests>pip install json
+
+C:\Users\STAS\.jenkins\workspace\addressbook tests>pip install pony
+
+C:\Users\STAS\.jenkins\workspace\addressbook tests>pip install pymysql
+
+C:\Users\STAS\.jenkins\workspace\addressbook tests>pip install mysql-connector-python-rt
+
+C:\Users\STAS\.jenkins\workspace\addressbook tests>py.test test\test_add_group.py
+ImportError while loading conftest 'C:\Users\STAS\.jenkins\workspace\addressbook tests\conftest.py'.
+conftest.py:6: in <module>
+    from fixture.db import DbFixture
+fixture\db.py:1: in <module>
+    import pymysql.cursors
+E   ModuleNotFoundError: No module named 'pymysql'
+
+C:\Users\STAS\.jenkins\workspace\addressbook tests>exit 4
+Build step 'Virtualenv Builder' marked build as failure
+Finished: FAILURE
