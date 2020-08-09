@@ -1,0 +1,36 @@
+Started by user admin
+Running as SYSTEM
+Building in workspace C:\Users\STAS\.jenkins\workspace\addressbook_tests
+No credentials specified
+ > C:\Program Files\Git\bin\git.exe rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > C:\Program Files\Git\bin\git.exe config remote.origin.url https://github.com/russa1995/python_training # timeout=10
+Fetching upstream changes from https://github.com/russa1995/python_training
+ > C:\Program Files\Git\bin\git.exe --version # timeout=10
+ > git --version # 'git version 2.28.0.windows.1'
+ > C:\Program Files\Git\bin\git.exe fetch --tags --force --progress -- https://github.com/russa1995/python_training +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > C:\Program Files\Git\bin\git.exe rev-parse "refs/remotes/origin/master^{commit}" # timeout=10
+ > C:\Program Files\Git\bin\git.exe rev-parse "refs/remotes/origin/origin/master^{commit}" # timeout=10
+Checking out Revision 2c4e0d20bf6f9c0225a149a6f54aea83686dce98 (refs/remotes/origin/master)
+ > C:\Program Files\Git\bin\git.exe config core.sparsecheckout # timeout=10
+ > C:\Program Files\Git\bin\git.exe checkout -f 2c4e0d20bf6f9c0225a149a6f54aea83686dce98 # timeout=10
+Commit message: "jenkins_log"
+ > C:\Program Files\Git\bin\git.exe rev-list --no-walk 2c4e0d20bf6f9c0225a149a6f54aea83686dce98 # timeout=10
+[addressbook_tests] $ cmd.exe /C "C:\Users\STAS\AppData\Local\Programs\Python\Python37\python.exe C:\Users\STAS\.jenkins\shiningpanda\jobs\22901e47\virtualenv.py C:\Users\STAS\.jenkins\shiningpanda\jobs\22901e47\virtualenvs\d41d8cd9 && exit %%ERRORLEVEL%%"
+PYTHONHOME is set.  You *must* activate the virtualenv before using it
+Using base prefix 'C:\\Users\\STAS\\AppData\\Local\\Programs\\Python\\Python37'
+New python executable in C:\Users\STAS\.jenkins\shiningpanda\jobs\22901e47\virtualenvs\d41d8cd9\Scripts\python.exe
+Installing setuptools, pip, wheel...done.
+C:\Users\STAS\.jenkins\shiningpanda\jobs\22901e47\virtualenv.py:1041: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+[addressbook_tests] $ cmd.exe /c call C:\Users\STAS\AppData\Local\Temp\shiningpanda6971198803893476467.bat
+
+C:\Users\STAS\.jenkins\workspace\addressbook_tests>pip install requirements.txt
+ERROR: Could not find a version that satisfies the requirement requirements.txt (from versions: none)
+ERROR: No matching distribution found for requirements.txt
+
+C:\Users\STAS\.jenkins\workspace\addressbook_tests>py.test test\test_add_group.py
+
+C:\Users\STAS\.jenkins\workspace\addressbook_tests>exit 1
+Build step 'Virtualenv Builder' marked build as failure
+Finished: FAILURE
